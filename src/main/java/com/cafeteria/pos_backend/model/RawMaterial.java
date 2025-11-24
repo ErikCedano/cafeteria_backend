@@ -2,10 +2,9 @@ package com.cafeteria.pos_backend.model;
 
 import lombok.*;
 
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-
 public class RawMaterial {
 
     private String id;
