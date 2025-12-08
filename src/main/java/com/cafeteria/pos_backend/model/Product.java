@@ -1,5 +1,6 @@
 package com.cafeteria.pos_backend.model;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,10 +8,14 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Entity
+@Table(name = "product")
 @Data
 public class Product {
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String name;
     private String description;
     private String categoryId;
@@ -18,13 +23,16 @@ public class Product {
     private Boolean hasVariants;
     private Boolean isActive;
     private String imageUrl;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "productId")
     private List<ProductVariant> variants;
     private LocalDateTime createdAt;
 
     public Product() {
     }
 
-    public Product(String id, String name, String description, String categoryId, String unitOfMeasure, Boolean hasVariants, Boolean isActive, String imageUrl, List<ProductVariant> variants, LocalDateTime createdAt) {
+    public Product(Integer id, String name, String description, String categoryId, String unitOfMeasure, Boolean hasVariants, Boolean isActive, String imageUrl, List<ProductVariant> variants, LocalDateTime createdAt) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -37,11 +45,11 @@ public class Product {
         this.createdAt = createdAt;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -117,3 +125,4 @@ public class Product {
         this.createdAt = createdAt;
     }
 }
+

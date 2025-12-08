@@ -1,13 +1,31 @@
 package com.cafeteria.pos_backend.model;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+@Table(name = "productVariant")
+@Entity
 @Data
 @NoArgsConstructor
 public class ProductVariant {
-    public ProductVariant(String id, String productId, String variantName, String sku, Double price, Double cost, Double taxRate, Boolean isActive, Integer stock) {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private Integer productId;
+    private String variantName;
+    private String sku;
+    private Double price;
+    private Double cost;
+    private Double taxRate;
+    private Boolean isActive;
+    private Integer stock;
+
+
+    public ProductVariant(Integer id, Integer productId, String variantName, String sku, Double price, Double cost, Double taxRate, Boolean isActive, Integer stock) {
         this.id = id;
         this.productId = productId;
         this.variantName = variantName;
@@ -19,27 +37,19 @@ public class ProductVariant {
         this.stock = stock;
     }
 
-    private String id;
-    private String productId;
-    private String variantName;
-    private String sku;
-    private Double price;
-    private Double cost;
-    private Double taxRate;
-
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
@@ -99,7 +109,5 @@ public class ProductVariant {
         this.stock = stock;
     }
 
-    private Boolean isActive;
-    private Integer stock;
 
 }

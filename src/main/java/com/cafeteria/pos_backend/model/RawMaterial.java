@@ -1,12 +1,17 @@
 package com.cafeteria.pos_backend.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
 
 //@NoArgsConstructor
 //@AllArgsConstructor
+@Entity
+@Table(name = "rawMaterial")
 @Data
 public class RawMaterial {
-
+    @Id
     private String id;
     private String name;
     private String description;
