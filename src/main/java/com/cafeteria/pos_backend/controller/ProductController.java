@@ -2,13 +2,11 @@ package com.cafeteria.pos_backend.controller;
 
 import com.cafeteria.pos_backend.model.Category;
 import com.cafeteria.pos_backend.model.Product;
+import com.cafeteria.pos_backend.repository.ProductRepository;
 import com.cafeteria.pos_backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +17,37 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    public ProductController(ProductService productService){
+        this.productService = productService;
+    }
+
+    @GetMapping
+    public List<Product> getAll(){
+        return productService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Product getById(@PathVariable String id){
+        return productService.findById(id);
+    }
+
+    @PostMapping
+    public Product create(@RequestBody Product product){
+        return productService.save(product);
+    }
+
+    @PutMapping("/{id}")
+    public Product update(@PathVariable Integer id, @RequestBody Product product){
+        product.setId(id);
+        return productService.save(product);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable String id){
+        productService.delete(id);
+    }
+
+    /*
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts(){
         List<Product> products = productService.getAllProducts();
@@ -26,8 +55,8 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(){
-        Product product = new Product();
+    public ResponseEntity<Product> getProductById(@PathVariable Integer id){
+        Product product = productService.getProductById(id);
         if(product == null){
             return ResponseEntity.notFound().build();
         }
@@ -49,5 +78,6 @@ public class ProductController {
         return ResponseEntity.ok(category);
 
     }
+*/
 
 }

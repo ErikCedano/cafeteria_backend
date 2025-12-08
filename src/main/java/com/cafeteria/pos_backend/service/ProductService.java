@@ -3,6 +3,7 @@ package com.cafeteria.pos_backend.service;
 import com.cafeteria.pos_backend.model.Category;
 import com.cafeteria.pos_backend.model.Product;
 import com.cafeteria.pos_backend.model.ProductVariant;
+import com.cafeteria.pos_backend.repository.ProductRepository;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ public class ProductService {
     private List<ProductVariant> variants;
     private List<Category> categories;
 
+    /*
     public ProductService() {
         initializeFakeData();
     }
@@ -44,6 +46,8 @@ public class ProductService {
             return p;
         }).collect(Collectors.toList());
     }
+
+
 
     public Product getProductById(Integer id) {
         return products.stream()
@@ -117,4 +121,26 @@ public class ProductService {
         variants.add(new ProductVariant(9, 3, "Grande", "CAF-CAP-GR", 70.0, 28.0, 0.16, true, 100));
         variants.add(new ProductVariant(19, 7, "Rebanada", "PAS-CHO-REB", 65.0, 25.0, 0.16, true, 24));
     }
+    */
+
+    private final ProductRepository productRepository;
+    public ProductService(ProductRepository repository){
+        this.productRepository = repository;
+    }
+
+    public List<Product> findAll(){
+        return productRepository.findAll();
+    }
+    public Product findById(String id){
+        return productRepository.findById(id).orElse(null);
+    }
+
+    public Product save(Product product){
+        return productRepository.save(product);
+    }
+
+    public void delete(String id){
+        productRepository.deleteById(id);
+    }
+
 }
