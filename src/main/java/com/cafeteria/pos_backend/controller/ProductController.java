@@ -2,8 +2,10 @@ package com.cafeteria.pos_backend.controller;
 
 import com.cafeteria.pos_backend.model.Category;
 import com.cafeteria.pos_backend.model.Product;
+import com.cafeteria.pos_backend.model.ProductVariant;
 import com.cafeteria.pos_backend.repository.ProductRepository;
 import com.cafeteria.pos_backend.service.ProductService;
+import com.cafeteria.pos_backend.service.ProductVariantServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +48,9 @@ public class ProductController {
     public void delete(@PathVariable String id){
         productService.delete(id);
     }
+
+
+
 
     /*
     @GetMapping
