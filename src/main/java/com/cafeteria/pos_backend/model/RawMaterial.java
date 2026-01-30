@@ -13,12 +13,19 @@ import lombok.*;
 public class RawMaterial {
     @Id
     private String id;
+
     private String name;
+
     private String description;
+
     private String category;
+
     private String unit;
+
     private Double stock;
+
     private Double minStock;
+
     private Double cost;
 
     public String getId() {

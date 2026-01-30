@@ -15,13 +15,21 @@ public class ProductVariant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private Integer productId;
+
     private String variantName;
+
     private String sku;
+
     private Double price;
+
     private Double cost;
+
     private Double taxRate;
+
     private Boolean isActive;
+
     private Integer stock;
 
 
